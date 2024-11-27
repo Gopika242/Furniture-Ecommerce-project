@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{%  extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'UpdateProduct' Up_id=Ed.id %}" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+
+<div class="form-group">
+                    <label for="select2SinglePlaceholder">Select Category</label>
+                    <select class="select2-single-placeholder form-control select2-hidden-accessible" name="Category"
+                            id="select2SinglePlaceholder" data-select2-id="select2SinglePlaceholder" tabindex="-1"
+                            aria-hidden="true" >
+                        <option>{{Ed.Category}}</option>
+                      {% for i in abb %}
+                         <option>{{i.CategoryName}}</option>
+                        {% endfor %}
+
+                    </select>
+                  </div>
+     <div class="form-group">
+                      <label for="exampleFormControlInput1">Product Name</label>
+                      <input type="text" class="form-control" id="exampleFormControlInput1" value="{{Ed.ProductName}}" name="ProductName" >
+                    </div>
+    <div class="form-group">
+                      <label >Quantity</label>
+                      <input type="number" class="form-control" value="{{Ed.Quantity}}" name="Quantity" >
+                    </div>
+    <div class="form-group">
+                      <label >MRP</label>
+                      <input type="number" class="form-control" value="{{Ed.MRP}}" name="MRP" >
+                    </div>
+     <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="PDescription">{{Ed.PDescription}}</textarea>
+                    </div>
+     <div class="form-group">
+                      <label for="exampleFormControlInput1">Country of origin</label>
+                      <input type="text" class="form-control" name="Country" value="{{Ed.Country}}" >
+                    </div>
+     <div class="form-group">
+                      <label for="exampleFormControlInput1">Manufactured by</label>
+                      <input type="text" class="form-control"  name="Manufacturer" value="{{Ed.Manufacturer}}" >
+                    </div>
+    <div class="form-group">
+                                <label>Upload Product images</label>
+                            <img src="{{Ed.ProductImage1.url}}"  width="60px" height="60px" alt="">
+                                <input class="form-control " name="ProductImage1" type="file" >
+                            <img src="{{Ed.ProductImage2.url}}"  width="60px" height="60px" alt="">
+                                <input class="form-control " name="ProductImage2" type="file" >
+                            <img src="{{Ed.ProductImage3.url}}"  width="60px" height="60px" alt="">
+                                <input class="form-control " name="ProductImage3" type="file" >
+                            </div>
+                      <button type="submit" class="btn btn-outline-primary mb-1">Submit</button>
+
+</form>
+</body>
+</html>
+{% endblock %}

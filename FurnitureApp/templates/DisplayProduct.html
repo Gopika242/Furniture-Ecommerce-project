@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+            <div class="col-lg-12 mb-4">
+              <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Product Details</h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush custom-table">
+                    <thead class="thead-light">
+
+<tr>
+                          <th >Category</th>
+                          <th >Product Name</th>
+                           <th >Quantity</th>
+                          <th >MRP</th>
+                           <th style="width: 50%;">Description</th>
+                          <th >Country</th>
+                          <th >Manufacturer</th>
+                          <th>Product Image1</th>
+                          <th >Product Image2</th>
+                          <th >Product Image3</th>
+                          <th style="width: 150px;">Actions</th>
+</tr>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in data %}
+                    <tr>
+                        <td>{{i.Category}}</td>
+                      <td>{{i.ProductName}}</td>
+                        <td>{{i.Quantity}}</td>
+                        <td>{{i.MRP}}</td>
+                        <td >{{i.PDescription}}</td>
+                        <td>{{i.Country}}</td>
+                          <td>{{i.Manufacturer}}</td>
+
+                        <td>
+                            <img src="{{i.ProductImage1.url}}" alt="" width="150px" height="80px">
+                        </td>
+                         <td>
+                            <img src="{{i.ProductImage2.url}}" alt="" width="150px" height="80px">
+                        </td>
+                         <td>
+                            <img src="{{i.ProductImage3.url}}" alt="" width="150px" height="80px">
+                        </td>
+
+                        <td>
+                          <button type="button"  class="btn btn-success btn-sm btn-icon-text mr-3"  >
+                          <a href="{% url 'EditProduct' Ep_id=i.id %}" style="color:white;">Edit</a>
+                              <i class="typcn typcn-edit btn-icon-append"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm btn-icon-text" >
+                          <a href="{% url 'DeleteProduct' Dp_id=i.id %}"   style="color:white;" >Delete</a>
+                        <i class="typcn typcn-delete-outline btn-icon-append"></i></button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="card-footer"></div>
+              </div>
+            </div>
+          </div>
+               <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                    {% if messages %}
+                    {% for i in messages %}
+                    {% if i.tags == 'success' %}
+                    <script>
+                        swal('{{i}}','','success');
+                    </script>
+                    {% elif i.tags == 'error' %}
+                    <script>
+                        swal('{{i}}','','error');
+                    </script>
+                    {% elif i.tags == 'warning' %}
+                    <script>
+                        swal('{{i}}','','warning');
+                    </script>
+
+                    {% else %}
+                    <script>
+                        swal('{{i}}','','info');
+                    </script>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+</body>
+</html>
+{% endblock %}

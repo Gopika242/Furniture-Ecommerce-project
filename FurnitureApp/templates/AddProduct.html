@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{%  extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'SaveProduct' %}" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+
+<div class="form-group">
+                    <label for="select2SinglePlaceholder">Select Category</label>
+                    <select class="select2-single-placeholder form-control select2-hidden-accessible" name="Category" id="select2SinglePlaceholder" data-select2-id="select2SinglePlaceholder" tabindex="-1" aria-hidden="true">
+                        <option>Open the select menu</option>
+                      {% for i in cat %}
+                         <option>{{i.CategoryName}}</option>
+                        {% endfor %}
+
+                    </select>
+                  </div>
+     <div class="form-group">
+                      <label for="exampleFormControlInput1">Product Name</label>
+                      <input type="text" class="form-control" id="exampleFormControlInput1" name="ProductName" >
+                    </div>
+    <div class="form-group">
+                      <label >Quantity</label>
+                      <input type="number" class="form-control"  name="Quantity" >
+                    </div>
+    <div class="form-group">
+                      <label >MRP</label>
+                      <input type="number" class="form-control"  name="MRP" >
+                    </div>
+     <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="PDescription"></textarea>
+                    </div>
+     <div class="form-group">
+                      <label for="exampleFormControlInput1">Country of origin</label>
+                      <input type="text" class="form-control" name="Country" >
+                    </div>
+     <div class="form-group">
+                      <label for="exampleFormControlInput1">Manufactured by</label>
+                      <input type="text" class="form-control"  name="Manufacturer" >
+                    </div>
+    <div class="form-group">
+                                <label>Upload Product images</label>
+                                <input class="form-control " name="ProductImage1" type="file" >
+                                <input class="form-control " name="ProductImage2" type="file" >
+                                <input class="form-control " name="ProductImage3" type="file" >
+                            </div>
+                      <button type="submit" class="btn btn-outline-primary mb-1">Submit</button>
+
+</form>
+               <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                    {% if messages %}
+                    {% for i in messages %}
+                    {% if i.tags == 'success' %}
+                    <script>
+                        swal('{{i}}','','success');
+                    </script>
+                    {% elif i.tags == 'error' %}
+                    <script>
+                        swal('{{i}}','','error');
+                    </script>
+                    {% elif i.tags == 'warning' %}
+                    <script>
+                        swal('{{i}}','','warning');
+                    </script>
+
+                    {% else %}
+                    <script>
+                        swal('{{i}}','','info');
+                    </script>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+</body>
+</html>
+{% endblock %}

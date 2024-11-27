@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" method="post">
+<div style="width:1600px;height:200px;background-color:#b9ebf6;margin-top:-35px">
+    <h1 style="text-align:center;font-size:50px;padding-top:60px">Payment Page</h1>
+</div>
+
+   <div style="text-align:center">
+       <img src="{% static 'Web/images/payment.avif' %}" alt="" height="500px" width="600px">
+   </div>
+<div style="text-align:center;margin-top:-50px">
+    <h2>Proceed to payment {{request.session.name}}</h2>
+
+  <button class="btn btn-primary" type="submit"  style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px;width:200px;height:60px;font-size:20px;text-align:center">Pay</button>
+</div>
+    </form>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_XrSOnebWyMTP0h"
+    data-amount="{{pay_str}}"
+    data-currency="INR"
+    data-order_id="{{payment}}"
+    data-buttontext=""
+    data-name="Habitat Furniture"
+    data-description="Your description"
+    data-image=""
+    data-prefill.name="abc"
+    data-prefill.email="abc@gmail.com"
+    data-theme.color="#4badeb">
+
+</script>
+</body>
+</html>

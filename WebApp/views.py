@@ -169,7 +169,7 @@ def Payment(re):
         print(i)
         if re.method=="POST":
            order_currency='INR'
-           client=razorpay.Client(auth=('rzp_test_XrSOnebWyMTP0h','dkXxPnKjW8WLpIREIadMAfzv'))
+           client=razorpay.Client(auth=('Your_key','Your_id'))
            payment=client.order.create({'amount':amount,'currency':order_currency})
         return render(re,'Payment.html',{'customer':customer,'pay_str':pay_str})
 
